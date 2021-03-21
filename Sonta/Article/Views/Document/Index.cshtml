@@ -1,0 +1,52 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<Core.Models.DocumentModel>>
+@using DotNetNuke.Web.Mvc.Helpers;
+@using System.Web.Mvc;
+
+@{
+    var project = ViewBag.Project as Core.Entities.Project;
+}
+
+<div class="head" style="margin-bottom:12px">
+    <div class="col-md-10"><h2>Danh sách tài liệu của dự án <strong>@project.ProjectName</strong></h2></div>
+    <div class="col-md-2 head-btn">
+        <div class="btn-group">
+            <a href="@Url.Action("Create","Document")?projectId=@Request.Params["ProjectId"]" class="btn btn-default"> <i class="glyphicon glyphicon-plus"></i>Tạo mới</a>
+        </div>
+    </div>
+</div>
+
+@{
+    int stt = 1;
+}
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th class="text-center">#</th>
+            <th class="text-center">Tên tài liệu</th>
+            <th class="text-center">Ngày đăng</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">@stt</td>
+                <td class="text-center">@item.Document.Name</td>
+                <td class="text-center">@item.Document.PostDate.ToString("dd/MM/yyyy")</td>
+                <td class="text-center">
+                    <a href="@item.Document.Path" target="_blank">Download</a> |
+                    <a onclick="DeleteBy(@item.Document.ID,'document')" href="javascript:void(0)" class="link link-red">Xóa</a>
+                </td>
+            </tr>
+            stt++;
+        }
+
+    </tbody>
+</table>
+
+<div class="center">
+    <a href="@Url.Action("Detail","Project")?id=@Request.Params["projectId"]" class="btn btn-default">Trở lại</a>
+</div>
+
+

@@ -1,0 +1,44 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<Core.Entities.Documents>
+@using DotNetNuke.Web.Mvc.Helpers;
+@using System.Web.Mvc;
+
+<h2>Thêm tài liệu cho Dự án</h2>
+<hr />
+<div class="pad-20">
+    <div class="">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <form action="" method="post" enctype="multipart/form-data">
+
+                <label for="file">Chọn file</label>
+                <input type="file" name="file" id="file" />
+            </form>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProjectId, "Mã dự án", new { @class = "control-label" })
+            <div>
+                @Html.TextBoxFor(model => model.ProjectId, new { @class = "form-control disabled" })
+                @Html.ValidationMessageFor(model => model.ProjectId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <span class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Thêm tài liệu" class="btn btn-primary" /> |
+                <a href="@Url.Action("Detail","Project")?id=@Model.ProjectId" class="btn btn-primary">Back to list</a>
+            </span>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#RealEndDateTemp, #StartDateTemp, #ExpectEndDateTemp").datetimepicker({
+            format: 'DD/MM/YYYY',
+            locale: 'vi',
+            showTodayButton: true
+        });
+    })
+</script>
+
+
+

@@ -1,0 +1,70 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<Core.Entities.Project>
+    @using DotNetNuke.Web.Mvc;
+    @using System.Web.Mvc;
+
+    <h2 style="font-size: 30px; text-align:center; font-weight: 700">Delete</h2>
+
+    <div class="container-fluid">
+        <div class="form-group">
+            <div class="col-md-8">
+                <div class="col-md-2 title">ID</div>
+                <div class="col-md-6">@Model.ID</div>
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-8">
+                <div class="col-md-2 title">Customer</div>
+                <div class="col-md-6">@Model.Customer</div>
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-8">
+                <div class="col-md-2 title">Description</div>
+                <div class="col-md-6">@Model.Description</div>
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-8">
+                <div class="col-md-2 title">ManagerID</div>
+                <div class="col-md-6">@Model.ManagerID</div>
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-8">
+                <div class="col-md-2 title">ProcessStatus</div>
+                <div class="col-md-6">@Model.ProcessStatus</div>
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-6">
+                <div class="col-md-4 title">StartDate</div>
+                <div class="col-md-8">@Model.StartDate</div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-4 title">ExpectEndDate</div>
+                <div class="col-md-8">@Model.ExpectEndDate</div>
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            <span class="col-md-10">
+                <input type="submit" value="Delete" class="btn btn-primary" /> |
+                <a href="@Url.Action("Index","Project")" class="btn btn-primary">Back to list</a>
+            </span>
+        </div>
+    </div>
+
+    <style>
+        .title {
+            font-weight: 700;
+        }
+    </style>
+

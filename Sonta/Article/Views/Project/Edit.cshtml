@@ -1,0 +1,109 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<Core.Entities.Project>
+@using DotNetNuke.Web.Mvc.Helpers;
+@using System.Web.Mvc;
+@using Article.Components;
+
+<h2>Edit Project</h2>
+
+@Html.AntiForgeryToken()
+<div class="pad-20">
+    <div class="">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProjectName, "Tên dự án", new { @class = "control-label" })
+                <div>
+                    @Html.TextBoxFor(model => model.ProjectName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Customer, "Khách hàng", new { @class = "control-label" })
+                <div>
+                    @Html.TextBoxFor(model => model.Customer, new { @class = "form-control disabled" })
+                    @Html.ValidationMessageFor(model => model.Customer, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    @Html.LabelFor(model => model.ManagerID, "Quản lý dự án", new { @class = "control-label" })
+                    <div>
+                        @Html.DropDownListFor(model => model.ManagerID, ViewBag.Users as SelectList, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ManagerID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6 form-group">
+                    @Html.LabelFor(model => model.ProcessStatus, "Trạng thái dự án", new { @class = "control-label" })
+                    <div>
+                        @Html.DropDownListFor(model => model.ProcessStatus, ViewBag.Status as SelectList, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ProcessStatus, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.StartDate, "Ngày bắt đầu", new { @class = "control-label" })
+                            <div>
+                                @Html.TextBox("StartDateTemp", Model.StartDate.ToString("dd/MM/yyyy"), new { @class = "form-control", @id = "startdatetemp" })
+                                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ExpectEndDate, "Ngày kết thúc", new { @class = "control-label" })
+                            <div>
+                                @Html.TextBox("ExpectEndDateTemp", Model.ExpectEndDate.ToString("dd/MM/yyyy"), new { @class = "form-control", @id = "ExpectEndDateTemp" })
+                                @Html.ValidationMessageFor(model => model.ExpectEndDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.Label("Danh sách nhân sự", new { @class = "control-label" })
+                <br />
+                <div>
+                    @*@Html.DropDownList("emp", ViewBag.Employees as SelectList,
+                    new { @class = "form-control" , @id="e1", multiple="true"})
+                    @Html.ValidationMessageFor(model => model.ManagerID, "", new { @class = "text-danger" })*@
+                    <select id="e1" name="emp" class="form-control" multiple="true">
+                        @foreach (var item in ViewBag.Employees as IEnumerable<System.Web.Mvc.SelectListItem>)
+                        {
+                            <option @(item.Selected ? "selected": "") value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, "Mô tả", new { @class = "control-label" })
+                <div>
+                    @Html.TextAreaFor(model => model.Description, 5, 20, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <span class="col-md-10">
+                    <input type="submit" value="Update" class="btn btn-primary" /> |
+                    <a href="@Url.Action("Index","Project")" class="btn btn-primary">Back to list</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#StartDateTemp, #ExpectEndDateTemp").datetimepicker({
+            format: 'DD/MM/YYYY',
+            locale: 'vi',
+            showTodayButton: true
+        });
+        $('#e1').select2();
+    })
+</script>

@@ -1,0 +1,28 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<Core.Entities.ProjectStatus>>
+
+<h1></h1><hr />
+<a href="@Url.Action("Create")" class="btn btn-primary">Create</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên</th>
+            <th>Tuỳ chỉnh</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ int stt = 1;}
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@stt</td>
+                <td>@item.Name</td>
+                <td>
+                    <a href="@Url.Action("Edit")?id=@item.Id">Edit</a> | 
+                    <a href="javascript:void(0)" onclick="DeleteBy('@item.Id', 'projectstatus')">Delete</a>
+                </td>
+            </tr>
+            stt++;
+        }
+    </tbody>
+</table>

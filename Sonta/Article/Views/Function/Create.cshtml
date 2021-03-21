@@ -1,0 +1,96 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<Core.Entities.Function>
+@using DotNetNuke.Web.Mvc.Helpers;
+@using System.Web.Mvc;
+
+@{ 
+    var project = ViewBag.Project as Core.Entities.Project;
+}
+
+<h2>Tạo mới tính năng</h2>
+<hr />
+<div class="pad-20">
+    <div class="">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.FuncName, "Tên tính năng", new { @class = "control-label" })
+                <div>
+                    @Html.TextBoxFor(model => model.FuncName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.FuncName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProjectID, "Mã dự án", new { @class = "control-label" })
+                <div>
+                    @Html.TextBoxFor(model => model.ProjectID, new { @class = "form-control disabled" })
+                    @Html.ValidationMessageFor(model => model.ProjectID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    @Html.LabelFor(model => model.Status, "Trạng thái tính năng", new { @class = "control-label" })
+                    <div>
+                        @Html.DropDownListFor(model => model.Status, ViewBag.Status as SelectList, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-6 form-group">
+                    @Html.LabelFor(model => model.DevID, "Người thực hiện", new { @class = "control-label" })
+                    <div>
+                        @Html.DropDownListFor(model => model.DevID, ViewBag.Users as SelectList, "--Select Developer--", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DevID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StartDate, "Ngày bắt đầu", new { @class = "control-label" })
+                        <div>
+                            @Html.TextBox("StartDateTemp", Model.StartDate, new { @class = "form-control", @id = "StartDateTemp" })
+                            @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ExpectEndDate, "Ngày kết thúc", new { @class = "control-label" })
+                        <div>
+                            @Html.TextBox("ExpectEndDateTemp", Model.ExpectEndDate, new { @class = "form-control", @id = "ExpectEndDateTemp" })
+                            @Html.ValidationMessageFor(model => model.ExpectEndDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, "Mô tả", new { @class = "control-label" })
+                <div>
+                    @Html.TextAreaFor(model => model.Description, 5, 20, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <span class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Tạo tính năng" class="btn btn-primary" /> |
+                <a href="@Url.Action("Detail","Project")?id=@Model.ProjectID" class="btn btn-primary">Back to list</a>
+            </span>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#RealEndDateTemp, #StartDateTemp, #ExpectEndDateTemp").datetimepicker({
+            format: 'DD/MM/YYYY',
+            locale: 'vi',
+            showTodayButton: true
+        });
+    })
+</script>
+
+
+

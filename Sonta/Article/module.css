@@ -1,0 +1,97 @@
+.font-base div, .font-base a, .font-base p, .font-base label {
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000000;
+}
+[class*=RadAjaxPanel] *, [class*=Digital] * {-webkit-box-sizing: inherit !important;-moz-box-sizing: inherit !important;box-sizing: inherit !important;}
+
+.dropdown-btn {text-align: center;}
+.dropdown-btn button {border-radius: unset;padding: 30px 50px;text-transform: uppercase;background: #86DEA9;color: #0E1C1C;font-weight: bold;font-size: 24px;line-height: 38px;}
+.form-1 {padding: 60px 80px;background-color: #DCDAD2;margin-top: 80px;}
+.header-line1 {border-bottom: 1px solid black;font-weight: bold;font-size: 24px !important;line-height: 38px;display:flex;}
+.form-2{padding: 60px 80px;background-color: #9A9888;}
+.form-3 {background-color: #DCDAD2;padding: 80px;display: flex;align-items: center;flex-direction: column;}
+.form-4 {padding: 120px 80px;display: flex;flex-wrap: wrap;}
+.form-5 {padding: 60px 80px;background-color: #273842;}
+.header-line1 .f-left{flex:1}
+.header-line1 .f-right{}
+
+.pad{padding:15px;}
+h1{font-size:2rem !important;}
+h2{font-size:1rem !important;}
+
+.article1 {
+    display: flex;
+    flex-wrap: wrap;
+}
+.art-box-img {
+    width: 769px;
+    height: 447px;
+}
+.art-box-img img{width: 100%;height:100%}
+.art-title {
+    flex: 1;
+    background: rgba(148, 142, 117, 0.1);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.avatar{width:100%;}
+.box-content img{width:100% !important;height:auto !important}
+.font-base {
+    font-size: 1.5em;
+    line-height: 32px;
+    font-family: Helvetica;
+}
+.font-m {
+    font-size: 28px;
+    line-height: 32px;
+    color: #0E1C1C;
+    text-transform:uppercase;
+}
+
+.font-1 {
+    font-family: Helvetica;
+    font-size: 16px;
+    line-height: 32px;
+    letter-spacing: 1px;
+    color: #143737;
+}
+
+@media (max-width: 768px) {
+    .art-title h2{
+        margin: 10px 0px !important;
+    }
+    .mar-t-60-mb{margin-top: 60px;}
+
+    .pad-80{padding: 80px 10px;}
+
+    .form-1{padding: 60px 10px;}
+    .form-2{padding: 60px 10px;}
+    .form-4{padding: 60px 15px;}
+    .form-5{padding: 60px 15px;}
+
+    .navbar {
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    .navbar-toggle {
+        position: absolute !important;
+        top: -8px;
+        right: 5px;
+    }
+
+    .navbar-collapse {
+        position: fixed;
+        z-index: 9999;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .search-box {
+        display: none;
+    }
+}
